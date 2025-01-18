@@ -1,21 +1,12 @@
-
-# Step 1: Use an official Python image as the base
+# Use official Python image as a base
 FROM python:3.8-slim
-
-# Step 2: Set the working directory in the container
+# Set the working directory
 WORKDIR /app
-
-# Step 3: Copy the application code into the container
+# Copy project files into the container
 COPY . /app
-
-# Step 4: Install dependencies
+# Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
-
-# Step 5: Expose the port used by the Flask app
+# Expose the port used by the Flask app
 EXPOSE 5000
-
-# Step 6: Add a health check or test step to validate routes
-RUN python -c "from app import app; print('Available Routes:', app.url_map)"
-
-# Step 7: Run the application
+# Run the Flask app
 CMD ["python", "app.py"]
